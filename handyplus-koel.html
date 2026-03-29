@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Handyplus Køl – Autoriseret Varmepumpe & Kølemontør</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,600;1,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ice: #dff0f7;
+    --ice-mid: #a8d8ea;
+    --blue: #1a6fa3;
+    --blue-dark: #0d4a72;
+    --navy: #081f33;
+    --warm: #f5f0e8;
+    --accent: #e8a840;
+    --text: #1a1a1a;
+    --muted: #5a6a78;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    color: var(--text);
+    background: var(--warm);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 4vw;
+    background: rgba(8,31,51,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(168,216,234,0.15);
+  }
+  .nav-logo {
+    font-family: 'Fraunces', serif;
+    font-size: 1.3rem;
+    color: #fff;
+    letter-spacing: -0.02em;
+  }
+  .nav-logo span { color: var(--ice-mid); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    color: rgba(255,255,255,0.7);
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--ice-mid); }
+  .nav-cta {
+    background: var(--blue);
+    color: #fff !important;
+    padding: 0.5rem 1.2rem;
+    border-radius: 2px;
+    opacity: 1 !important;
+  }
+  .nav-cta:hover { background: var(--ice-mid); color: var(--navy) !important; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    background: var(--navy);
+    position: relative;
+    display: flex; align-items: center;
+    overflow: hidden;
+    padding: 0 4vw;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 80% at 80% 50%, rgba(26,111,163,0.25) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 60% at 20% 80%, rgba(168,216,234,0.08) 0%, transparent 60%);
+  }
+  .hero-grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(168,216,234,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(168,216,234,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .hero-content {
+    position: relative; z-index: 2;
+    max-width: 700px;
+    animation: fadeUp 1s ease both;
+  }
+  .hero-tag {
+    display: inline-block;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ice-mid);
+    border: 1px solid rgba(168,216,234,0.3);
+    padding: 0.4rem 0.9rem;
+    border-radius: 2px;
+    margin-bottom: 2rem;
+  }
+  .hero h1 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    font-weight: 300;
+    line-height: 1.05;
+    color: #fff;
+    letter-spacing: -0.03em;
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--ice-mid);
+  }
+  .hero p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.6);
+    max-width: 520px;
+    margin-bottom: 2.5rem;
+  }
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--blue);
+    color: #fff;
+    padding: 0.9rem 2rem;
+    border-radius: 2px;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: background 0.2s, transform 0.2s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--ice-mid); color: var(--navy); transform: translateY(-1px); }
+  .btn-outline {
+    border: 1px solid rgba(255,255,255,0.25);
+    color: rgba(255,255,255,0.8);
+    padding: 0.9rem 2rem;
+    border-radius: 2px;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 400;
+    transition: border-color 0.2s, color 0.2s;
+    display: inline-block;
+  }
+  .btn-outline:hover { border-color: var(--ice-mid); color: var(--ice-mid); }
+
+  .hero-badge {
+    position: absolute;
+    right: 8vw; bottom: 12vh;
+    width: 160px; height: 160px;
+    border-radius: 50%;
+    border: 1px solid rgba(168,216,234,0.2);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center;
+    color: rgba(255,255,255,0.7);
+    font-size: 0.75rem;
+    line-height: 1.5;
+    animation: spin 20s linear infinite;
+  }
+  .hero-badge-inner {
+    font-family: 'Fraunces', serif;
+    font-size: 1.8rem;
+    font-weight: 300;
+    color: var(--ice-mid);
+    display: block;
+  }
+  @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+  .hero-badge-text {
+    animation: spin 20s linear infinite reverse;
+  }
+
+  /* STRIP */
+  .strip {
+    background: var(--blue);
+    padding: 1rem 4vw;
+    display: flex; align-items: center; gap: 3rem;
+    overflow: hidden;
+  }
+  .strip-item {
+    display: flex; align-items: center; gap: 0.7rem;
+    color: rgba(255,255,255,0.85);
+    font-size: 0.85rem;
+    white-space: nowrap;
+  }
+  .strip-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--ice-mid); flex-shrink: 0; }
+
+  /* SECTIONS */
+  section { padding: 6rem 4vw; }
+
+  .section-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--blue);
+    font-weight: 500;
+    margin-bottom: 1rem;
+    display: block;
+  }
+  .section-title {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 300;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--navy);
+    margin-bottom: 1.2rem;
+  }
+  .section-title em { font-style: italic; color: var(--blue); }
+
+  /* SERVICES */
+  .services { background: var(--warm); }
+  .services-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5px;
+    margin-top: 3.5rem;
+    border: 1.5px solid var(--navy);
+  }
+  .service-card:last-child {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: center;
+  }
+  .service-card:last-child .service-card-text { }
+  .service-card:last-child .service-num { font-size: 5rem; margin-bottom: 0; }
+  .service-card {
+    background: #fff;
+    padding: 2.5rem 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s;
+    cursor: default;
+  }
+  .service-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--blue);
+    transform: scaleX(0);
+    transition: transform 0.3s;
+    transform-origin: left;
+  }
+  .service-card:hover { background: var(--ice); }
+  .service-card:hover::before { transform: scaleX(1); }
+  .service-num {
+    font-family: 'Fraunces', serif;
+    font-size: 3rem;
+    font-weight: 300;
+    color: rgba(26,111,163,0.12);
+    line-height: 1;
+    margin-bottom: 1rem;
+    display: block;
+  }
+  .service-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    display: block;
+  }
+  .service-card h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: var(--navy);
+    margin-bottom: 0.8rem;
+  }
+  .service-card p {
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: var(--muted);
+  }
+
+  /* ABOUT */
+  .about {
+    background: var(--navy);
+    position: relative;
+    overflow: hidden;
+  }
+  .about-bg {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 50% 100% at 100% 50%, rgba(26,111,163,0.2) 0%, transparent 60%);
+  }
+  .about-inner {
+    position: relative; z-index: 2;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+  .about .section-label { color: var(--ice-mid); }
+  .about .section-title { color: #fff; }
+  .about-text {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: rgba(255,255,255,0.65);
+    margin-bottom: 1.5rem;
+  }
+  .about-quote {
+    border-left: 3px solid var(--blue);
+    padding-left: 1.5rem;
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 1.15rem;
+    color: var(--ice-mid);
+    line-height: 1.6;
+    margin: 2rem 0;
+  }
+  .about-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+  .stat-card {
+    border: 1px solid rgba(168,216,234,0.15);
+    padding: 1.5rem;
+    border-radius: 2px;
+  }
+  .stat-num {
+    font-family: 'Fraunces', serif;
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: var(--ice-mid);
+    display: block;
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+  .stat-label {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.05em;
+  }
+
+  /* CTA */
+  .cta-section {
+    background: var(--blue-dark);
+    text-align: center;
+    padding: 5rem 4vw;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-section::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 80% at 50% 50%, rgba(168,216,234,0.08) 0%, transparent 70%);
+  }
+  .cta-section .section-label { color: var(--ice-mid); text-align: center; }
+  .cta-section .section-title { color: #fff; text-align: center; margin-bottom: 0.8rem; }
+  .cta-sub {
+    color: rgba(255,255,255,0.55);
+    font-size: 1rem;
+    margin-bottom: 2.5rem;
+    position: relative;
+  }
+  .cta-phone {
+    display: inline-block;
+    font-family: 'Fraunces', serif;
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: var(--ice-mid);
+    text-decoration: none;
+    letter-spacing: -0.02em;
+    position: relative;
+    transition: color 0.2s;
+  }
+  .cta-phone:hover { color: #fff; }
+  .cta-address {
+    margin-top: 2rem;
+    color: rgba(255,255,255,0.4);
+    font-size: 0.85rem;
+    position: relative;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--navy);
+    padding: 2rem 4vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid rgba(168,216,234,0.08);
+  }
+  .footer-logo {
+    font-family: 'Fraunces', serif;
+    font-size: 1.1rem;
+    color: rgba(255,255,255,0.5);
+  }
+  .footer-logo span { color: var(--ice-mid); }
+  .footer-copy {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.3);
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .reveal {
+    opacity: 0; transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* MOBILE */
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .hero-badge { display: none; }
+    .about-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    .strip { gap: 1.5rem; flex-wrap: wrap; }
+    footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Handyplus <span>Køl</span></div>
+  <ul class="nav-links">
+    <li><a href="#ydelser">Ydelser</a></li>
+    <li><a href="#om">Om os</a></li>
+    <li><a href="#kontakt" class="nav-cta">Kontakt</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-tag">Autoriseret montør · Kirke Hyllinge</div>
+    <h1>Ekspert i <em>varmepumper</em> & køleanlæg</h1>
+    <p>Professionel installation og service med fokus på kvalitet, ærlighed og den rigtige løsning til din bolig — til den aftalte pris.</p>
+    <div class="hero-btns">
+      <a href="#kontakt" class="btn-primary">Ring til os</a>
+      <a href="#ydelser" class="btn-outline">Se ydelser</a>
+    </div>
+  </div>
+  <div class="hero-badge">
+    <span class="hero-badge-inner">Aut.</span>
+    <span class="hero-badge-text" style="font-size:0.7rem; color: rgba(255,255,255,0.5); line-height:1.6;">Varmepumpe<br>montør</span>
+  </div>
+</section>
+
+<div class="strip">
+  <div class="strip-item"><span class="strip-dot"></span> Autoriseret varmepumpemontør</div>
+  <div class="strip-item"><span class="strip-dot"></span> Uddannet kølemontør</div>
+  <div class="strip-item"><span class="strip-dot"></span> Håndværk i topkvalitet</div>
+  <div class="strip-item"><span class="strip-dot"></span> Fast pris aftalt på forhånd</div>
+  <div class="strip-item"><span class="strip-dot"></span> Lokal – Kirke Hyllinge</div>
+</div>
+
+<section class="services" id="ydelser">
+  <span class="section-label reveal">Hvad vi tilbyder</span>
+  <h2 class="section-title reveal">Vores <em>ydelser</em></h2>
+  <div class="services-grid reveal">
+    <div class="service-card">
+      <span class="service-num">01</span>
+      <span class="service-icon">♨️</span>
+      <h3>Varmepumper</h3>
+      <p>Autoriseret installation og service af luft-til-luft og luft-til-vand varmepumper. Vi finder den bedste løsning til dit hjem og din økonomi.</p>
+    </div>
+    <div class="service-card">
+      <span class="service-num">02</span>
+      <span class="service-icon">🔧</span>
+      <h3>Serviceydelser</h3>
+      <p>Løbende service og vedligeholdelse af køle- og varmepumpeanlæg. Forebyg nedbrud og forlæng levetiden på dit anlæg.</p>
+    </div>
+    <div class="service-card">
+      <div><span class="service-num">03</span></div>
+      <div class="service-card-text">
+        <span class="service-icon">🏗️</span>
+        <h3>Entreprenør & Handyman</h3>
+        <p>Vi udfører også praktiske opgaver inden for husets fire vægge. Stort som småt — vi hjælper med det hele.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="om">
+  <div class="about-bg"></div>
+  <div class="about-inner">
+    <div class="reveal">
+      <span class="section-label">Om Handyplus Køl</span>
+      <h2 class="section-title">Håndværk med <em>stolthed</em></h2>
+      <p class="about-text">Handyplus Køl er en personlig enkeltmandsvirksomhed ejet og drevet af Martin Pluszek. Med en baggrund som autoriseret varmepumpemontør og uddannet kølemontør bringer Martin mange års faglig erfaring med ud til hver eneste opgave.</p>
+      <blockquote class="about-quote">
+        "Handyplus Køl sætter en ære i at lave et flot håndværk med de bedste løsninger i samarbejde med kunden og til den aftalte pris."
+      </blockquote>
+      <p class="about-text">Vi er en lille virksomhed, og det mærkes. Du taler direkte med håndværkeren, der møder op og udfører arbejdet. Ingen mellemled — bare ærligt, ordentligt håndværk.</p>
+    </div>
+    <div class="about-stats reveal">
+      <div class="stat-card">
+        <span class="stat-num">Aut.</span>
+        <span class="stat-label">Varmepumpemontør</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-num">Udd.</span>
+        <span class="stat-label">Kølemontør</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-num">Fast</span>
+        <span class="stat-label">Pris aftalt på forhånd</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-num">100%</span>
+        <span class="stat-label">Personlig betjening</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section" id="kontakt">
+  <span class="section-label">Kom i kontakt</span>
+  <h2 class="section-title">Klar til at <em>hjælpe</em></h2>
+  <p class="cta-sub">Ring direkte til Martin for en uforpligtende snak om din opgave</p>
+  <a href="tel:61349119" class="cta-phone">61 34 91 19</a>
+  <p class="cta-address">Anders Rasmussensvej 30 · 4070 Kirke Hyllinge</p>
+</section>
+
+<footer>
+  <div class="footer-logo">Handyplus <span>Køl</span></div>
+  <div class="footer-copy">© 2025 Handyplus Køl · CVR: Martin Pluszek</div>
+</footer>
+
+<script>
+const reveals = document.querySelectorAll('.reveal');
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+}, { threshold: 0.15 });
+reveals.forEach(r => obs.observe(r));
+</script>
+
+</body>
+</html>
